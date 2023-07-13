@@ -4,8 +4,10 @@ import time
 
 pipeline = depthai.Pipeline()
 
-vio_pipeline = spectacularAI.depthai.Pipeline(pipeline)
-# optional config args: vio_pipeline = spectacularAI.depthai.Pipeline(pipeline, config, useStereo=False)
+#vio_pipeline = spectacularAI.depthai.Pipeline(pipeline)
+config = spectacularAI.depthai.Configuration()
+config.ensureSufficientUsbSpeed = False
+vio_pipeline = spectacularAI.depthai.Pipeline(pipeline, config)
 
 with depthai.Device(pipeline) as device, \
     vio_pipeline.startSession(device) as vio_session:
